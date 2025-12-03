@@ -1,5 +1,7 @@
 const express = require('express');
 const sequelize = require('./db/connection');
+//const connectDB = require('./db/connection');
+
 const app = express();
 const userRoutes = require('./routes/userRoutes');
 
@@ -26,3 +28,11 @@ sequelize.sync({ force: true })
     });
   })
   .catch(err => console.error('DB sync error:', err));
+
+// const PORT = process.env.PORT || 3000;
+
+// connectDB().then(() => {
+//   app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+//   });
+// }).catch(err => console.error('DB connection error:', err));

@@ -14,11 +14,14 @@ class userService {
         }
 
         //return await User.findAll();
+        //const users = await User.find(); --> Mongoose version
+
     }
 
     async getUserById(id) {
         try {
             const user = await User.findByPk(id);
+            //const user = await User.findById(id); --> Mongoose version
             if (!user) {
                 throw new Error('User not found');
             }
@@ -32,6 +35,8 @@ class userService {
     async createUser(userData) {
         try {
             const newUser = await User.create(userData);
+            // const newUser = new User(userData);
+            // await newUser.save();
             return { success: true, data: newUser };
         } catch (error) {
             return { success: false, error: error };
@@ -40,6 +45,8 @@ class userService {
     async updateUser(id, userData) {
         try {
             const user = await User.findByPk(id);
+            //const user = await User.findByIdAndUpdate(id, userData, { new: true, runValidators: true });
+
             if (!user) {
                 throw new Error('User not found');
             }
@@ -52,6 +59,8 @@ class userService {
     async deleteUser(id) {
         try {
             const user = await User.findByPk(id);
+            //const user = await User.findByIdAndDelete(id);
+
             if (!user) {
                 throw new Error('User not found');
             }
